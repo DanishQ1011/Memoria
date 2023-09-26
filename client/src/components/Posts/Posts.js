@@ -4,9 +4,7 @@ import Post from './Post/Post';
 const Posts = () => {
   return (
     <>
-    <div>Posts</div>
-    <Post/>
-    <Post/>
+    <div className='text-green-600'>Posts</div>
     </>
   )
 }

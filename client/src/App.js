@@ -9,9 +9,12 @@ import  Posts  from './components/Posts/Posts';
 const App = () => {
 
   return (
-    <h1>
-      Hello World!
-    </h1>
+    <main className='max-container bg-gray-900' >
+      <div className='flex justify-center py-4 px-4'>
+        <h1 className='text-[50px] font-montserrat text-blue-500'>Memoria</h1>
+      </div>
+      <Form/>
+    </main>
   )
 }
 
