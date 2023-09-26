@@ -10,10 +10,13 @@ const App = () => {
 
   return (
     <main className='max-container bg-gray-900' >
-      <div className='flex justify-center py-4 px-4'>
+      <div className='flex justify-center px-4'>
         <h1 className='text-[50px] font-montserrat text-blue-500'>Memoria</h1>
       </div>
-      <Form/>
+      <div className='flex justify-around py-4 max-sm:flex-col-reverse'>
+        <Posts/>
+        <Form/>
+      </div>
     </main>
   )
 }

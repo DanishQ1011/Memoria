@@ -2,13 +2,13 @@ import React from 'react';
 
 const Form = () => {
   return (
-    <section className='max-w-[1440px] md:mx-[80px] '>
-    <div className='flex justify-end max-sm:justify-center '>
-      <div className="min-h-screen flex flex-col justify-center ">
-        <div className="relative py-2 lg:w-[500px] sm:max-w-xl sm:mx-auto md:mb-[100px] lg:mb-30 max-sm:mb-[200px]">
-          <div className="relative  md:p-5 bg-gray-800 shadow-lg sm:rounded-3xl sm:p-10 max-sm:rounded-md bg-opacity-60 border border-gray-700" style={{ backdropFilter: "blur(20px)" }}>
+    <section className='max-w-[1440px] md:mx-[80px]'>
+    <div className='flex max-sm:justify-center '>
+      <div className="flex flex-col sm:justify-center ">
+        <div className="relative lg:w-[500px] sm:max-w-xl sm:mx-auto md:mb-[100px] lg:mb-30 max-sm:mb-[50px]">
+          <div className="relative md:p-5 bg-gray-800 shadow-lg sm:rounded-2xl max-sm:p-10 max-sm:rounded-md bg-opacity-60 border border-gray-800" style={{ backdropFilter: "blur(20px)" }}>
             <div className='mb-4 md:mb-10 lg:mb-4'>
-              <p className='text-center text-white text-lg lg:text-2xl'>Create Memory</p>
+              <p className='text-center text-blue-300 text-lg lg:text-2xl'>Create Memory</p>
             </div>
             <div className="max-w-lg mx-auto">
               <div className="divide-y divide-gray-200">
