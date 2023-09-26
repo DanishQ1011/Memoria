@@ -2,11 +2,11 @@ import React from 'react';
 
 const Form = () => {
   return (
-    <section className='max-w-[1440px] md:mx-[80px]'>
-    <div className='flex justify-end max-sm:justify-center'>
-      <div className="min-h-screen flex flex-col justify-center">
-        <div className="relative py-2 lg:w-[500px] sm:max-w-xl sm:mx-auto md:mb-20 lg:mb-30 max-sm:mb-[200px]">
-          <div className="relative  py-3 px-3 bg-gray-800 shadow-lg sm:rounded-3xl sm:p-10 max-sm:rounded-md bg-clip-padding bg-opacity-60 border border-gray-200" style={{ backdropFilter: "blur(20px)" }}>
+    <section className='max-w-[1440px] md:mx-[80px] '>
+    <div className='flex justify-end max-sm:justify-center '>
+      <div className="min-h-screen flex flex-col justify-center ">
+        <div className="relative py-2 lg:w-[500px] sm:max-w-xl sm:mx-auto md:mb-[100px] lg:mb-30 max-sm:mb-[200px]">
+          <div className="relative  md:p-5 bg-gray-800 shadow-lg sm:rounded-3xl sm:p-10 max-sm:rounded-md bg-opacity-60 border border-gray-700" style={{ backdropFilter: "blur(20px)" }}>
             <div className='mb-4 md:mb-10 lg:mb-4'>
               <p className='text-center text-white text-lg lg:text-2xl'>Create Memory</p>
             </div>
@@ -59,20 +59,21 @@ const Form = () => {
                       </div>
                     </div>
 
-                    <div className="mb-6">
+                    <div className='flex justify-evenly gap-5' >
                       <button
                         type="submit"
-                        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:text-base p-2 text-center dark:bg-blue-600 dark-hover:bg-blue-700 dark-focus-ring-blue-800 w-full"
+                        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 w-full focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:text-base p-2 text-center dark:bg-blue-600 dark-hover:bg-blue-700 dark-focus-ring-blue-800 "
                       >
                         Submit
                       </button>
-                    </div>
+  
                     <button
                       type="reset"
-                      className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm sm:text-base p-2 text-center dark:bg-red-600 dark-hover:bg-red-700 dark-focus-ring-red-800 w-full"
+                      className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 w-full focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm sm:text-base p-2 text-center dark:bg-red-600 dark-hover:bg-red-700 dark-focus-ring-red-800 "
                     >
                       Clear
                     </button>
+                    </div>
                   </form>
                 </div>
               </div>
