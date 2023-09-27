@@ -1,11 +1,15 @@
-import React from 'react'
-import { Container, AppBar, Typography, Grow, Grid } from '@mui/material';
+import React, { useEffect } from 'react'
 import  Form  from './components/Form/Form';
 import  Posts  from './components/Posts/Posts';
-
-
+import { useDispatch } from 'react-redux';
+import { getPosts } from './actions/posts'
 
 const App = () => {
+const dispatch = useDispatch();
+
+useEffect(() =>{
+  dispatch(getPosts());
+}, [dispatch]);
 
   return (
     <main className='max-container bg-gray-900' >
