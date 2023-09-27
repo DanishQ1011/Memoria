@@ -4,7 +4,7 @@ import Post from './Post/Post';
 const Posts = () => {
   return (
     <section className='max-w-[1440px] md:mx-[80px] max-sm:mb-[100px]'>
-      <div className='flex max-sm:justify-center'>
+      <div className='grid grid-cols-2 max-sm:justify-center'>
         <div>
           <Post/>
         </div>
