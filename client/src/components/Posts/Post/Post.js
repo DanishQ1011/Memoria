@@ -3,9 +3,9 @@ import { card } from '../../../constants';
 
 const Post = () => {
   return (
-    <>
+    <div className='grid grid-cols-2 gap-[30px] max-sm:grid-cols-1 '>
     {card.map((item) => (
-    <div className="gap-[50px] max-sm:grid-cols-1 max-sm:p-7">
+    <div className=" max-sm:p-7 max-sm:py-3">
       <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-800">
           <div >
             <img className="rounded-t-lg" src={item.image} alt=""/>
@@ -91,7 +91,7 @@ const Post = () => {
       </div> */}
     </div>
     ))}
-    </>
+    </div>
   );
 }
 
