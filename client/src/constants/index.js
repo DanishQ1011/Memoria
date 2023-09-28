@@ -17,5 +17,11 @@ export const card = [
         creator: 'By Danish',
         summary: 'Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.',
     },
+    {
+        image: 'https://flowbite.com/docs/images/blog/image-1.jpg',
+        title: "10th November 2023 - We met at Truffles!",
+        creator: 'By Danish',
+        summary: 'Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.',
+    },
 
 ];

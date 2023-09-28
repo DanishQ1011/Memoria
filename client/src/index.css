@@ -5,5 +5,7 @@
 @tailwind components;
 @tailwind utilities;
 
-
+.input-file input[type="file" i]::-webkit-file-upload-button{
+    background: #190fde;
+}
 

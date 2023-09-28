@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import FileBase from 'react-file-base64';
+import { useDispatch } from 'react-redux';
+import { createPost } from '../../actions/posts';
 
 const Form = () => {
+
+const [postData, setPostData] = useState({ creator: '', title: '', message: '', selectedFile: '',});
+const dispatch = useDispatch();
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+  dispatch(createPost(postData));
+}
+
   return (
-    <section className='max-w-[1440px] md:mx-[80px]'>
+    <form className='max-w-[1440px] md:mx-[80px]' onSubmit={handleSubmit}>
     <div className='flex max-sm:justify-center '>
       <div className="flex flex-col sm:justify-center ">
         <div className="relative lg:w-[500px] sm:max-w-xl sm:mx-auto md:mb-[100px] lg:mb-30 max-sm:mb-[50px]">
@@ -23,6 +35,8 @@ const Form = () => {
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           placeholder="Danish"
                           required
+                          value={postData.creator}
+                          onChange={(e) => setPostData({ ...postData, creator: e.target.value })}
                         />
                       </div>
                       <div>
@@ -33,6 +47,8 @@ const Form = () => {
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           placeholder="Best day ever"
                           required
+                          value={postData.title}
+                          onChange={(e) => setPostData({ ...postData, title: e.target.value })}
                         />
                       </div>
                       <div>
@@ -42,20 +58,20 @@ const Form = () => {
                           rows="4"
                           className="block w-full p-2 text-sm sm:text-base text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           placeholder="Write your thoughts here..."
+                          value={postData.message}
+                          onChange={(e) => setPostData({ ...postData, message: e.target.value })}
                         ></textarea>
                       </div>
                       <div>
+                        <FileBase>
                         <label htmlFor="file_input" className="block mb-1 text-sm sm:mb-2 sm:text-base font-medium text-gray-900 dark:text-white">Upload file</label>
                         <input
                           type="file"
-                          className="text-sm text-grey-500
-                          file:mr-5 file:py-2 file:px-6
-                          file:rounded-full file:border-0
-                          file:text-sm file:font-medium
-                          file:bg-blue-50 file:text-blue-700
-                          hover:file:cursor-pointer hover:file:bg-blue-50
-                          hover:file:text-blue-700"
+                          id="selectedfile"
+                          multiple={false}
+                          onDone={({base64}) => setPostData({ ...postData, selectedFile: base64})}
                         />
+                        </FileBase>
                       </div>
                     </div>
 
@@ -74,6 +90,7 @@ const Form = () => {
                       Clear
                     </button>
                     </div>
+
                   </form>
                 </div>
               </div>
@@ -82,7 +99,7 @@ const Form = () => {
         </div>
       </div>
     </div>
-    </section>
+    </form>
   );
 }
 
