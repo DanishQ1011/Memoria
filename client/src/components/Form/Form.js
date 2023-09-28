@@ -1,28 +1,17 @@
 import React, { useState } from 'react';
-import { useDropzone } from 'react-dropzone';
+import FileBase from 'react-file-base64';
 import { useDispatch } from 'react-redux';
 import { createPost } from '../../actions/posts';
 
 const Form = () => {
-  const [postData, setPostData] = useState({ creator: '', title: '', message: '', selectedFile: '' });
+  const initialPostData = { creator: '', title: '', message: '', selectedFile: '' };
+  const [postData, setPostData] = useState(initialPostData); // Initialize with initialPostData
   const dispatch = useDispatch();
-
-  const onDrop = (acceptedFiles) => {
-    // Handle the dropped files here
-    if (acceptedFiles.length > 0) {
-      const selectedFile = acceptedFiles[0];
-      setPostData({ ...postData, selectedFile });
-    }
-  };
-
-  const { getRootProps, getInputProps } = useDropzone({
-    onDrop,
-    accept: 'image/*', // Specify accepted file types (e.g., images)
-  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createPost(postData));
+    setPostData(initialPostData);
   };
 
   return (
@@ -77,11 +66,13 @@ const Form = () => {
                         ></textarea>
                       </div>
                       <div>
-                        {/* Dropzone for file upload */}
-                        <div {...getRootProps()} className='dropzone' name='selectedFile'>
-                          <input {...getInputProps()} />
-                          <p>click to select a file</p>
-                        </div>
+                      <div className='p-3 border border-dashed border-gray-300 rounded-lg'>
+                      <FileBase
+                        type="file"
+                        multiple={false}
+                        onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })}
+                      />
+                    </div>
                       </div>
                     </div>
 
