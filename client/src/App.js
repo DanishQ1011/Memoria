@@ -12,7 +12,7 @@ useEffect(() =>{
 }, [dispatch]);
 
   return (
-    <main className='max-container bg-gray-900' >
+    <main className='bg-gray-900' >
       <div className='flex justify-center px-4'>
         <h1 className='text-[50px] font-montserrat text-blue-500'>Memoria</h1>
       </div>

@@ -5,7 +5,7 @@ import { createPost } from '../../actions/posts';
 
 const Form = () => {
   const initialPostData = { creator: '', title: '', message: '', selectedFile: '' };
-  const [postData, setPostData] = useState(initialPostData); // Initialize with initialPostData
+  const [postData, setPostData] = useState(initialPostData); 
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -15,10 +15,10 @@ const Form = () => {
   };
 
   return (
-    <form className='max-w-[1440px] md:mx-[80px]' onSubmit={handleSubmit}>
+    <form className='max-w-[1440px] md:mx-[50px]' onSubmit={handleSubmit}>
       <div className='flex max-sm:justify-center '>
         <div className="flex flex-col sm:justify-center ">
-          <div className="relative lg:w-[500px] sm:max-w-xl sm:mx-auto md:mb-[100px] lg:mb-30 max-sm:mb-[50px]">
+          <div className="relative lg:w-[410px] sm:max-w-xl sm:mx-auto md:mb-[100px] lg:mb-30 max-sm:mb-[50px]">
             <div className="relative md:p-5 bg-gray-800 shadow-lg sm:rounded-2xl max-sm:p-10 max-sm:rounded-md bg-opacity-60 border border-gray-800" style={{ backdropFilter: "blur(20px)" }}>
               <div className='mb-4 md:mb-10 lg:mb-4'>
                 <p className='text-center text-blue-300 text-lg lg:text-2xl'>Create Memory</p>
