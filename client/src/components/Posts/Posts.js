@@ -7,9 +7,9 @@ const Posts = ({ setCurrentId }) => {
   
   return (
     <>
-    <section className='grid grid-cols-3 w-[100%] gap-[30px] max-w-[1440px] md:mx-[50px] max-sm:mb-[100px]'>
+    <section className='grid grid-cols-3 w-[100%] gap-[30px] max-sm:grid-cols-1 max-sm: max-w-[1440px] md:mx-[50px]'>
     {posts.map((post) => (
-      <div className='max-sm:justify-center'>
+      <div className='flex max-sm:justify-center'>
         <div key={post._id}>
           <Post post={post} setCurrentId={setCurrentId}/>
         </div>

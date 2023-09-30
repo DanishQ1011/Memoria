@@ -1,20 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { likePost, deletePost } from '../../../actions/posts';
 
 const Post = ({ post, setCurrentId }) => {
   const dispatch = useDispatch();
-  
+  const [showImagePreview, setShowImagePreview] = useState(false);
+
+  const toggleImagePreview = () => {
+    setShowImagePreview(!showImagePreview);
+  };
+
+  const cardHeight = post.selectedFile ? 'h-[508px]' : 'h-[268px]';
+
   return (
-    <div className='grid grid-cols-3 gap-x-[10px] gap-y-[20px] max-sm:grid-cols-1 '>
-    <div className="py-[2px] max-sm:p-7 max-sm:py-3">
-      <div className="max-w-sm h-[508px] w-[300px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-800">
-            <img className="rounded-t-lg h-[210px] w-full object-cover object-top" src={post.selectedFile} alt=""/>
+    <div className=''>
+    <div className="">
+      <div className="max-w-sm ${cardHeight} bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-800">
+      {post.selectedFile && (
+            <img
+              className="rounded-t-lg h-[210px] w-full object-cover object-top cursor-pointer"
+              src={post.selectedFile}
+              alt=""
+              onClick={toggleImagePreview}
+            />
+
+          )}
+            {showImagePreview && (
+            <div className="fixed top-0 left-0 flex items-center justify-center w-full h-full bg-black bg-opacity-80 z-50">
+              <img
+                className="max-h-full max-w-full"
+                src={post.selectedFile}
+                alt=""
+                onClick={toggleImagePreview}
+              />
+            </div>
+          )}
             <div className='p-4'>
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{post.title}</h5>
               <h6 className="text-white mb-2">{post.creator}</h6>
-              <p className="font-normal text-gray-700 dark:text-gray-400 h-[80px] overflow-y-scroll">{post.message}</p>
+              <p className="font-normal text-gray-700 dark:text-gray-400 h-[80px] w-[250px] overflow-y-scroll">{post.message}</p>
               <p className='mb-2 text-sm text-gray-500'>{moment(post.createdAt).fromNow()}</p>
               <div className="p-2 mt-4">
           <div className="flex justify-around">
@@ -23,7 +48,7 @@ const Post = ({ post, setCurrentId }) => {
                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
               </svg>
             </button>
-            <button>
+            <button onClick={() => setCurrentId(post._id)} >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="yellow" className="w-7 h-7">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
               </svg>

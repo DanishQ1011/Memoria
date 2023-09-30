@@ -1,17 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FileBase from 'react-file-base64';
-import { useDispatch } from 'react-redux';
-import { createPost } from '../../actions/posts';
+import { useDispatch, useSelector } from 'react-redux';
+import { createPost, updatePost } from '../../actions/posts';
 
-const Form = () => {
-  const initialPostData = { creator: '', title: '', message: '', selectedFile: '' };
-  const [postData, setPostData] = useState(initialPostData); 
+
+
+const Form = ({currentId, setCurrentId}) => {
+  const [postData, setPostData] = useState({ creator: '', title: '', message: '', selectedFile: '' });
+  const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if(post) setPostData(post);
+  }, [post])
+
+  const clear = () => {
+    setCurrentId(0); 
+    setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createPost(postData));
-    setPostData(initialPostData);
+
+    if (currentId === 0) {
+      dispatch(createPost(postData));
+      clear();
+    } else {
+      dispatch(updatePost(currentId, postData));
+      clear();
+    }
   };
 
   return (
@@ -21,7 +38,7 @@ const Form = () => {
           <div className="relative lg:w-[410px] sm:max-w-xl sm:mx-auto md:mb-[100px] lg:mb-30 max-sm:mb-[50px]">
             <div className="relative md:p-5 bg-gray-800 shadow-lg sm:rounded-2xl max-sm:p-10 max-sm:rounded-md bg-opacity-60 border border-gray-800" style={{ backdropFilter: "blur(20px)" }}>
               <div className='mb-4 md:mb-10 lg:mb-4'>
-                <p className='text-center text-blue-300 text-lg lg:text-2xl'>Create Memory</p>
+                <p className='text-center text-blue-300 text-lg lg:text-2xl'>{currentId ? `Editing "${post.title}"` : 'Creating a Memory'}</p>
               </div>
               <div className="max-w-lg mx-auto">
                 <div className="divide-y divide-gray-200">
@@ -84,7 +101,7 @@ const Form = () => {
                         Submit
                       </button>
                       <button
-                        type="reset"
+                        onClick={clear}
                         className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 w-full focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm sm:text-base p-2 text-center dark-bg-red-600 dark-hover-bg-red-700 dark-focus-ring-bg-red-800 "
                       >
                         Clear
