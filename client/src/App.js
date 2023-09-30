@@ -10,7 +10,7 @@ const dispatch = useDispatch();
 
 useEffect(() =>{
   dispatch(getPosts());
-}, [dispatch]);
+}, [currentId, dispatch]);
 
   return (
     <main className='bg-gray-900' >
