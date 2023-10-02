@@ -11,12 +11,14 @@ const Post = ({ post, setCurrentId }) => {
     setShowImagePreview(!showImagePreview);
   };
 
+  const [isLiked, setIsLiked] = useState(false);
+
   const cardHeight = post.selectedFile ? 'h-[508px]' : 'h-[268px]';
 
   return (
-    <div className=''>
+    <div className='max-sm:p-4'>
     <div className="">
-      <div className="max-w-sm ${cardHeight} bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-800">
+      <div className={`max-w-sm ${cardHeight} bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-800`}>
       {post.selectedFile && (
             <img
               className="rounded-t-lg h-[210px] w-full object-cover object-top cursor-pointer"
@@ -43,11 +45,15 @@ const Post = ({ post, setCurrentId }) => {
               <p className='mb-2 text-sm text-gray-500'>{moment(post.createdAt).fromNow()}</p>
               <div className="p-2 mt-4">
           <div className="flex justify-around">
-            <button onClick={() => dispatch(likePost(post._id))} >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="0 0 24 24" stroke-width="1.5" stroke="red" className="w-7 h-7">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-              </svg>
-            </button>
+          <button>
+  <svg xmlns="http://www.w3.org/2000/svg" onClick={() => { 
+                                          dispatch(likePost(post._id));
+                                          setIsLiked(!isLiked);
+                                        }}  
+  className={`w-7 h-7 ${ isLiked ? 'text-red-500 fill-red-500' : 'text-red-500'}`} fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+  </svg>
+</button>
             <button onClick={() => setCurrentId(post._id)} >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="yellow" className="w-7 h-7">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />

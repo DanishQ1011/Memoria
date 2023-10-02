@@ -86,6 +86,7 @@ const Form = ({currentId, setCurrentId}) => {
                       <div className='p-3 border border-dashed border-gray-300 rounded-lg'>
                       <FileBase
                         type="file"
+                        inputProps={{ accept: 'image/*, .xlsx, .xls, .csv, .pdf, .pptx, .pptm, .ppt' }}
                         multiple={false}
                         onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })}
                       />
