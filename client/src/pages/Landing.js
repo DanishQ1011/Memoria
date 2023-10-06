@@ -15,7 +15,7 @@ const Landing = () => {
       <div className="w-1/2 bg-blue-500">
         <img src= {landingpage} />
       </div>
-      <div className="w-1/2 ">
+      <div className="w-1/2 py-[25px]">
         <div className='flex justify-center'>
         <form className='max-w-[1440px] '>
       <div className='flex max-sm:justify-center '>
@@ -82,7 +82,7 @@ const Landing = () => {
                         <button
                                 type="button"
                                 onClick={togglePasswordVisibility}
-                                className="absolute inset-y-0 right-0 mr-8 text-gray-400 hover:text-gray-600 cursor-pointer"
+                                className="absolute inset-y-35 mt-[10px] right-8 text-gray-400 hover:text-gray-600 cursor-pointer"
                               >
                                 {passwordVisible ? (
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">

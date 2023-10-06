@@ -16,7 +16,7 @@ useEffect(() =>{
 
   return (
     <main className='bg-gray-900' >
-      {/* <NavLink/> */}
+      <NavLink/>
       <Landing />
       {/* <div className='flex justify-around py-[40px] max-sm:flex-col-reverse'>
         <Posts setCurrentId={setCurrentId} />
