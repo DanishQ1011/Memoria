@@ -5,6 +5,7 @@ import NavLink from './components/NavLink/NavLink'
 import { useDispatch } from 'react-redux';
 import { getPosts } from './actions/posts';
 import Landing from './pages/Landing';
+import Footer from './components/Footer/Footer';
 
 const App = () => {
 const [currentId, setCurrentId] = useState(null);
@@ -18,6 +19,7 @@ useEffect(() =>{
     <main className='bg-gray-900' >
       <NavLink/>
       <Landing />
+      <Footer/>
       {/* <div className='flex justify-around py-[40px] max-sm:flex-col-reverse'>
         <Posts setCurrentId={setCurrentId} />
         <Form currentId={currentId} setCurrentId={setCurrentId} />

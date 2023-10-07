@@ -11,20 +11,15 @@ const Landing = () => {
   };
 
   return (
-    <div className="flex h-screen bg-gray-900">
-      <div className="w-1/2 bg-blue-500">
-        <img src= {landingpage} />
-      </div>
-      <div className="w-1/2 py-[25px]">
-        <div className='flex justify-center'>
-        <form className='max-w-[1440px] '>
+    <div className="flex justify-center py-[25px] bg-gray-900 max-sm:p-[20px]">
+    <form className='max-w-[1440px] '>
       <div className='flex max-sm:justify-center '>
         <div className="flex flex-col sm:justify-center ">
           <div className="relative lg:w-[410px] sm:max-w-xl sm:mx-auto md:mb-[100px] lg:mb-30 max-sm:mb-[50px]">
             <div className="relative md:p-5 bg-gray-800 shadow-lg sm:rounded-2xl max-sm:p-10 max-sm:rounded-md bg-opacity-60 border border-gray-800" style={{ backdropFilter: "blur(20px)" }}>
               <div className='mb-4 md:mb-10 lg:mb-4'>
                 <p className='flex justify-start items-center gap-3  text-blue-500 text-lg lg:text-2xl'>
-                <svg className='h-[24px] mt-[4px]' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <svg className='h-[24px] mt-[3px]' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                 </svg>
                   Sign Up
@@ -34,8 +29,8 @@ const Landing = () => {
                 <div className="divide-y divide-gray-200">
                   <div className="py-3 text-sm sm:text-base md:text-lg space-y-4 text-white">
                     <div className="grid gap-4 grid-cols-2 sm:gap-6 mb-2">
-                      <div>
-                        <label htmlFor="firstname" className="block text-sm sm:mb-2 sm:text-base font-medium text-gray-900 dark:text-white">First name</label>
+                    <div>
+                        <label htmlFor="firstname" className="block mb-1 text-sm sm:mb-2 sm:text-base font-medium text-gray-900 dark:text-white">First name</label>
                         <input
                           type="text"
                           name="firstname"
@@ -82,7 +77,7 @@ const Landing = () => {
                         <button
                                 type="button"
                                 onClick={togglePasswordVisibility}
-                                className="absolute inset-y-35 mt-[10px] right-8 text-gray-400 hover:text-gray-600 cursor-pointer"
+                                className="absolute inset-y-35 mt-[10px] right-8 max-sm:right-[50px] max-sm:mt-[7px] text-gray-400 hover:text-gray-600 cursor-pointer"
                               >
                                 {passwordVisible ? (
                                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -139,11 +134,9 @@ const Landing = () => {
             </div>
           </div>
         </div>
-      </div>
+        </div>
     </form>
         </div>
-      </div>
-    </div>
   );
 };
 

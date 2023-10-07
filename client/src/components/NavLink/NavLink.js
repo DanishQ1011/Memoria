@@ -8,18 +8,18 @@ const NavLink = () => {
   };
 
   return (
-      <nav className=" w-full z-10 flex py-[10px] px-[80px] justify-between items-center max-container bg-gray-800 max-sm:p-10 bg-opacity-80 border border-gray-800" style={{ backdropFilter: "blur(20px)" }}>
+      <nav className=" w-full max-sm:z-10 flex py-[10px] px-[80px] max-sm:py-[6px] justify-between items-center max-container bg-gray-800 max-sm:p-10 bg-opacity-80 border border-gray-800" style={{ backdropFilter: "blur(20px)" }}>
         <a href="/">
-          <h1 className="text-[35px] text-blue-500">Memoria</h1>
+          <h1 className="text-[35px] text-blue-500 max-sm:text-[25px]">Memoria</h1>
         </a>
 
         <div className='flex gap-10 items-center font-medium font-montserrat max-lg:hidden wide:mr-24'>
         <div className="text-blue-500 text-xl leading-normal hover:text-white">
           <a href='/'>Log in</a>
         </div>
-        <div className="text-gray-800 text-xl bg-blue-500 p-[8px] rounded-md leading-normal hover:text-white">
+        {/* <div className="text-gray-800 text-xl bg-blue-500 p-[8px] rounded-md leading-normal hover:text-white">
           <a href='/'>Sign up</a>
-        </div>
+        </div> */}
         </div>
         
         {/* This is for the hamburger menu 👇🏼*/}
@@ -54,9 +54,9 @@ const NavLink = () => {
             <a className="mx-[30px] text-blue-500 py-2 px-2 " href="/">
               Log in 
             </a>
-            <a className="mx-[30px] text-blue-500 py-2 px-2 " href="/">
+            {/* <a className="mx-[30px] text-blue-500 py-2 px-2 " href="/">
               Sign Up
-            </a>
+            </a> */}
           </div>
         </ul>
       </nav>
