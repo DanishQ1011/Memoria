@@ -9,7 +9,6 @@ import Footer from './components/Footer/Footer';
 
 const App = () => {
 const [showLoginForm, setShowLoginForm] = useState(true);
-const [buttonText, setButtonText] = useState("Sign up");
 const [currentId, setCurrentId] = useState(null);
 const dispatch = useDispatch();
 
@@ -17,9 +16,7 @@ const toggleLoginForm = () => {
   setShowLoginForm(!showLoginForm);
 };
 
-const toggleNavText = () => {
-  setButtonText(buttonText === "Sign up" ? "Log in" : "Sign up")
-}
+
 
 useEffect(() =>{
   dispatch(getPosts());
@@ -27,8 +24,8 @@ useEffect(() =>{
 
   return (
     <main className='bg-gray-900' >
-      <NavLink showLoginForm={showLoginForm} toggleLoginForm={toggleLoginForm} toggleNavText={toggleNavText}/>
-      <Landing showLoginForm={showLoginForm} toggleLoginForm={toggleLoginForm} toggleNavText={buttonText}/>
+      <NavLink showLoginForm={showLoginForm} toggleLoginForm={toggleLoginForm} />
+      <Landing showLoginForm={showLoginForm} toggleLoginForm={toggleLoginForm} />
       
       {/* <div className='flex justify-around py-[40px] max-sm:flex-col-reverse'>
         <Posts setCurrentId={setCurrentId} />
