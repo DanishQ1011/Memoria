@@ -4,7 +4,7 @@ import  Posts  from './components/Posts/Posts';
 import NavLink from './components/NavLink/NavLink'
 import { useDispatch } from 'react-redux';
 import { getPosts } from './actions/posts';
-import Landing from './pages/Landing';
+import Authentication from './components/Authentication/Authentication';
 import Footer from './components/Footer/Footer';
 
 const App = () => {
@@ -25,7 +25,7 @@ useEffect(() =>{
   return (
     <main className='bg-gray-900' >
       <NavLink showLoginForm={showLoginForm} toggleLoginForm={toggleLoginForm} />
-      <Landing showLoginForm={showLoginForm} toggleLoginForm={toggleLoginForm} />
+      <Authentication showLoginForm={showLoginForm} toggleLoginForm={toggleLoginForm} />
       
       {/* <div className='flex justify-around py-[40px] max-sm:flex-col-reverse'>
         <Posts setCurrentId={setCurrentId} />
