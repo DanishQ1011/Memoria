@@ -1,5 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client'; // Import createRoot from 'react-dom'
+import { BrowserRouter as Router } from "react-router-dom";
 
 import './index.css';
 import { Provider } from 'react-redux';
@@ -17,6 +18,8 @@ const root = createRoot(document.getElementById('root'));
 
 root.render(
   <Provider store={store}>
+    <Router>
     <App classname='bg-gray-800'/>
+    </Router>
   </Provider>
 );
