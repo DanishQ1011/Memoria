@@ -1,12 +1,9 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 
-const NavLink = ({ toggleLoginForm }) => {
+const NavLink = () => {
   const [menuVisible, setMenuVisible] = useState(false);
-  const [buttonText, setButtonText] = useState("Sign up");
 
-  const toggleNavText = () => {
-    setButtonText(buttonText === "Sign up" ? "Log in" : "Sign up")
-  }
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
@@ -21,8 +18,8 @@ const NavLink = ({ toggleLoginForm }) => {
 
         <div className='flex gap-10 items-center font-medium font-montserrat max-lg:hidden wide:mr-24'>
           {/* {showLoginForm ? ( */}
-            <div className="text-blue-500 text-xl leading-normal hover:text-white">
-              <p className="cursor-pointer" onClick={() => { toggleLoginForm(); toggleNavText(); }}>{buttonText}</p>
+            <div className="text-blue-500 text-xl leading-normal hover:text-white cursor-pointer">
+                <Link to='./signup'>Sign up</Link>
             </div>
           {/* ) : (
             <div className="flex gap-10 items-center">

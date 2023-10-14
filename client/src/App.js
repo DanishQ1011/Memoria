@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import NavLink from './components/NavLink/NavLink'
 import { useDispatch } from 'react-redux';
 import { getPosts } from './actions/posts';
 import Footer from './components/Footer/Footer';
@@ -18,7 +17,6 @@ useEffect(() =>{
 
   return (
     <main className='bg-gray-900' >
-      <NavLink />
       <Routes>
           <Route path='/' element={<Login/>} />
           <Route path='/signup' element={<Signup/>} />
