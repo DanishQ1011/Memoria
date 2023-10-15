@@ -4,7 +4,7 @@ import { signInWithPopup } from "firebase/auth";
 import { Link, useNavigate } from 'react-router-dom';
 import { useUserAuth } from '../../context/UserAuthContext';
 
-const Login = ({ showLoginForm, toggleLoginForm }) => {
+const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
   const [error, setError] =  useState('');
@@ -90,11 +90,11 @@ const Login = ({ showLoginForm, toggleLoginForm }) => {
           </svg>
         </button>
         <ul
-          className={`${menuVisible ? "block" : "hidden"} lg:hidden absolute top-[6rem] right-5 bg-gray-900 py-2 rounded-md`}
+          className={`${menuVisible ? "block" : "hidden"} lg:hidden absolute top-[2rem] right-5 bg-gray-900 py-2 rounded-md`}
         >
           <div className="flex flex-col  leading-normal font-medium font-montserrat rounded-md text-xl">
             <a className="mx-[30px] text-blue-500 py-2 px-2 " href="/">
-              Log in
+                <Link to='./signup'>Sign up</Link>
             </a>
           </div>
         </ul>

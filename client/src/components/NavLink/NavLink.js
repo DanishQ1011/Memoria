@@ -1,9 +1,18 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
+import { useUserAuth } from "../../context/UserAuthContext";
 
 const NavLink = () => {
   const [menuVisible, setMenuVisible] = useState(false);
+  const { user, logOut } = useUserAuth();
 
+  const handleLogOut = async () => {
+    try {
+      await logOut();
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 
   const toggleMenu = () => {
     setMenuVisible(!menuVisible);
@@ -19,7 +28,7 @@ const NavLink = () => {
         <div className='flex gap-10 items-center font-medium font-montserrat max-lg:hidden wide:mr-24'>
           {/* {showLoginForm ? ( */}
             <div className="text-blue-500 text-xl leading-normal hover:text-white cursor-pointer">
-                <Link to='/'>Log out</Link>
+                <h1 onClick={handleLogOut}>Log out</h1>
             </div>
           {/* ) : (
             <div className="flex gap-10 items-center">
@@ -55,11 +64,11 @@ const NavLink = () => {
           </svg>
         </button>
         <ul
-          className={`${menuVisible ? "block" : "hidden"} lg:hidden absolute top-[6rem] right-5 bg-gray-900 py-2 rounded-md`}
+          className={`${menuVisible ? "block" : "hidden"} lg:hidden absolute top-[2rem] right-5 bg-gray-900 py-2 rounded-md`}
         >
-          <div className="flex flex-col  leading-normal font-medium font-montserrat rounded-md text-xl">
+          <div className="flex flex-col leading-normal font-medium font-montserrat rounded-md text-xl">
             <a className="mx-[30px] text-blue-500 py-2 px-2 " href="/">
-              Log in 
+              <h1 onClick={handleLogOut}>Log out</h1>
             </a>
           </div>
         </ul>

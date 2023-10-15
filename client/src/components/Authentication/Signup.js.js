@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useUserAuth } from '../../context/UserAuthContext';
 
@@ -10,6 +10,7 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const {signUp} = useUserAuth();
   const navigate = useNavigate();
+  const {googleSignIn} = useUserAuth();
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -29,6 +30,17 @@ const Signup = () => {
         setError(error.message);
     }
   };
+
+  const handleGoogleSignIn = async (e) => {
+    e.preventDefault();
+    try {
+      await googleSignIn();
+      navigate("/home");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
 
   return (
     <>
@@ -63,11 +75,11 @@ const Signup = () => {
           </svg>
         </button>
         <ul
-          className={`${menuVisible ? "block" : "hidden"} lg:hidden absolute top-[6rem] right-5 bg-gray-900 py-2 rounded-md`}
+          className={`${menuVisible ? "block" : "hidden"} lg:hidden absolute top-[2rem] right-5 bg-gray-900 py-2 rounded-md`}
         >
           <div className="flex flex-col  leading-normal font-medium font-montserrat rounded-md text-xl">
             <a className="mx-[30px] text-blue-500 py-2 px-2 " href="/">
-              Log in 
+                <Link to='/'>Log in</Link> 
             </a>
           </div>
         </ul>
@@ -189,7 +201,7 @@ const Signup = () => {
                             Sign up
                           </button>
                           <div>
-                            <button className="flex justify-center items-center gap-4 text-white bg-gray-700 hover-bg-gray-800 focus-ring-4 w-full focus-outline-none focus-ring-red-300 font-medium rounded-lg text-sm sm:text-base p-3 text-center dark-bg-red-600 dark-hover-bg-red-700 dark-focus-ring-bg-red-800">
+                            <button onClick={handleGoogleSignIn} className="flex justify-center items-center gap-4 text-white bg-gray-700 hover-bg-gray-800 focus-ring-4 w-full focus-outline-none focus-ring-red-300 font-medium rounded-lg text-sm sm:text-base p-3 text-center dark-bg-red-600 dark-hover-bg-red-700 dark-focus-ring-bg-red-800">
                               <svg className="h-[24px]" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" viewBox="0 0 256 262">
                                 <path fill="#4285F4" d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c-24.659-22.774 38.875-56.282 38.875-96.027"></path>
                                 <path fill="#34A853" d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055-34.523 0-63.824-22.773-74.269-54.25l-1.531.13-40.298 31.187-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1"></path>
