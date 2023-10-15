@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { auth, provider } from "./config";
 import { signInWithPopup } from "firebase/auth";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useUserAuth } from '../../context/UserAuthContext';
 
 const Login = ({ showLoginForm, toggleLoginForm }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
+  const [error, setError] =  useState('');
+  const {logIn, googleSignIn} = useUserAuth();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -28,9 +34,27 @@ const Login = ({ showLoginForm, toggleLoginForm }) => {
     setValue(localStorage.getItem('email'));
   });
 
-  const handleSubmit = () => {
-    // Handle form submission for login or sign-up accordingly
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      await logIn(email, password);
+      navigate("/home");
+    } catch (err) {
+      setError(err.message);
+    }
   };
+
+  const handleGoogleSignIn = async (e) => {
+    e.preventDefault();
+    try {
+      await googleSignIn();
+      navigate("/home");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
 
   return (
     <>
@@ -89,6 +113,11 @@ const Login = ({ showLoginForm, toggleLoginForm }) => {
                       Log in
                     </p>
                   </div>
+                  {error && (
+                    <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                        {error}
+                    </div>
+                    )}
                   <div className="max-w-lg mx-auto">
                     <div className="divide-y divide-gray-200">
                       <div className="py-3 text-sm sm:text-base md:text-lg space-y-4 text-white">
@@ -100,6 +129,7 @@ const Login = ({ showLoginForm, toggleLoginForm }) => {
                             type="email"
                             label="email"
                             name="email"
+                            onChange={(e) => setEmail(e.target.value)}
                             className="block w-full p-2 text-sm sm:text-base text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="johndoe@somesite.com"
                             required
@@ -114,6 +144,7 @@ const Login = ({ showLoginForm, toggleLoginForm }) => {
                               type={passwordVisible ? 'text' : 'password'}
                               name="password"
                               label="password"
+                              onChange={(e) => setPassword(e.target.value)}
                               className="block w-full p-2 text-sm sm:text-base text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                               placeholder="•••••"
                               required
@@ -145,7 +176,7 @@ const Login = ({ showLoginForm, toggleLoginForm }) => {
                             Log in
                           </button>
                           <div>
-                            <button onClick={handleClick} className="flex justify-center items-center gap-4 text-white bg-gray-700 hover-bg-gray-800 focus-ring-4 w-full focus-outline-none focus-ring-red-300 font-medium rounded-lg text-sm sm:text-base p-3 text-center dark-bg-red-600 dark-hover-bg-red-700 dark-focus-ring-bg-red-800">
+                            <button onClick={handleGoogleSignIn} className="flex justify-center items-center gap-4 text-white bg-gray-700 hover-bg-gray-800 focus-ring-4 w-full focus-outline-none focus-ring-red-300 font-medium rounded-lg text-sm sm:text-base p-3 text-center dark-bg-red-600 dark-hover-bg-red-700 dark-focus-ring-bg-red-800">
                               <svg className="h-[24px]" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" viewBox="0 0 256 262">
                                 <path fill="#4285F4" d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c-24.659-22.774 38.875-56.282 38.875-96.027"></path>
                                 <path fill="#34A853" d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055-34.523 0-63.824-22.773-74.269-54.25l-1.531.13-40.298 31.187-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1"></path>

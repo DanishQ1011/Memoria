@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useUserAuth } from '../../context/UserAuthContext';
 
 const Signup = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
+  const [error, setError] =  useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const {signUp} = useUserAuth();
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -13,8 +19,15 @@ const Signup = () => {
     setMenuVisible(!menuVisible);
   };
 
-  const handleSubmit = () => {
-    // Handle form submission for login or sign-up accordingly
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    try {
+        await signUp(email, password);
+        navigate('/')
+    } catch (error) {
+        setError(error.message);
+    }
   };
 
   return (
@@ -73,6 +86,11 @@ const Signup = () => {
                       Sign up
                     </p>
                   </div>
+                  {error && (
+                    <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                        {error}
+                    </div>
+                    )}
                   <div className="max-w-lg mx-auto">
                     <div className="divide-y divide-gray-200">
                       <div className="py-3 text-sm sm:text-base md:text-lg space-y-4 text-white">
@@ -112,6 +130,7 @@ const Signup = () => {
                             type="email"
                             label="email"
                             name="email"
+                            onChange={(e) => setEmail(e.target.value)}
                             className="block w-full p-2 text-sm sm:text-base text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="johndoe@somesite.com"
                             required
@@ -126,6 +145,7 @@ const Signup = () => {
                               type={passwordVisible ? 'text' : 'password'}
                               name="password"
                               label="password"
+                              onChange={(e) => setPassword(e.target.value)}
                               className="block w-full p-2 text-sm sm:text-base text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                               placeholder="•••••"
                               required

@@ -19,7 +19,7 @@ const NavLink = () => {
         <div className='flex gap-10 items-center font-medium font-montserrat max-lg:hidden wide:mr-24'>
           {/* {showLoginForm ? ( */}
             <div className="text-blue-500 text-xl leading-normal hover:text-white cursor-pointer">
-                <Link to='./signup'>Sign up</Link>
+                <Link to='/'>Log out</Link>
             </div>
           {/* ) : (
             <div className="flex gap-10 items-center">

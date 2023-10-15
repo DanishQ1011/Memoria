@@ -1,30 +1,25 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux';
-import { getPosts } from './actions/posts';
 import Footer from './components/Footer/Footer';
 import Signup from './components/Authentication/Signup.js';
 import Login from './components/Authentication/Login.js';
 import { Routes,Route } from 'react-router-dom';
+import { UserAuthContextProvider } from './context/UserAuthContext';
+import  Home  from './components/Home';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const App = () => {
-const [currentId, setCurrentId] = useState(null);
-const dispatch = useDispatch();
 
-
-useEffect(() =>{
-  dispatch(getPosts());
-}, [currentId, dispatch]);
 
   return (
     <main className='bg-gray-900' >
+      <UserAuthContextProvider>
       <Routes>
           <Route path='/' element={<Login/>} />
           <Route path='/signup' element={<Signup/>} />
-          {/* <div className='flex justify-around py-[40px] max-sm:flex-col-reverse'>
-            <Posts setCurrentId={setCurrentId} />
-            <Form currentId={currentId} setCurrentId={setCurrentId} />
-          </div> */}
+          <Route path='/home' element={<ProtectedRoute>
+            <Home/>
+          </ProtectedRoute>}/>
       </Routes>
+      </UserAuthContextProvider>
       <Footer/>
     </main>
   )
